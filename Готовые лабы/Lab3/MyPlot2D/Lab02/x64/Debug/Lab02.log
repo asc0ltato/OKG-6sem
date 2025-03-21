@@ -1,0 +1,16 @@
+﻿  ChildView.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  CMatrix.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  Lab02.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  LibChart2D.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+C:\Users\ascoltat0\Desktop\Lab3\MyPlot2D\Lab02\LibChart2D.cpp(205,41): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\ascoltat0\Desktop\Lab3\MyPlot2D\Lab02\LibChart2D.cpp(205,31): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\ascoltat0\Desktop\Lab3\MyPlot2D\Lab02\LibChart2D.cpp(205,23): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\ascoltat0\Desktop\Lab3\MyPlot2D\Lab02\LibChart2D.cpp(205,14): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+  MainFrm.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  Создание кода...
+  Lab02.vcxproj -> C:\Users\ascoltat0\Desktop\Lab3\MyPlot2D\x64\Debug\Lab02.exe
