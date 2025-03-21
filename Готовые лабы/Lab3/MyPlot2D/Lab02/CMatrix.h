@@ -5,13 +5,13 @@
 class CMatrix
 {
 	double** array;
-	int n_rows;							// Число строк
-	int n_cols;							// Число столбцов
+	int n_rows;							// Р§РёСЃР»Рѕ СЃС‚СЂРѕРє
+	int n_cols;							// Р§РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
 public:
-	CMatrix();							// Конструктор по умолчанию (1 на 1)	
-	CMatrix(int, int);		    		// Конструктор	
-	CMatrix(int);						// Конструктор -вектора (один столбец)
-	CMatrix(const CMatrix&);			// Конструктор копирования	
+	CMatrix();							// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ (1 РЅР° 1)	
+	CMatrix(int, int);		    		// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ	
+	CMatrix(int);						// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ -РІРµРєС‚РѕСЂР° (РѕРґРёРЅ СЃС‚РѕР»Р±РµС†)
+	CMatrix(const CMatrix&);			// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ	
 	CMatrix(std::ifstream& file)
 	{
 		int r = 0;
@@ -19,8 +19,8 @@ public:
 		file >> r;
 		file >> c;
 
-		// Nrow - число строк
-		// Ncol - число столбцов
+		// Nrow - С‡РёСЃР»Рѕ СЃС‚СЂРѕРє
+		// Ncol - С‡РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
 
 		n_rows = r;
 		n_cols = c;
@@ -33,29 +33,29 @@ public:
 				file >> array[i][j];
 	}
 	~CMatrix();
-	double& operator()(int, int);        // Выбор элемента матрицы по индексу 
-	double& operator()(int);            // Выбор элемента вектора по индексу 
-	CMatrix operator-();			    // Оператор "-"
-	CMatrix operator=(const CMatrix&);	// Оператор "Присвоить":    M1=M2
-	CMatrix operator*(CMatrix&);        // Оператор "Произведение": М1*М2
-	CMatrix operator+(CMatrix&);	    // Оператор "+": M1+M2
-	CMatrix operator-(CMatrix&);	    // Оператор "-": M1-M2
-	CMatrix operator+(double);		    // Оператор "+": M+a
-	CMatrix operator-(double);		    // Оператор "-": M-a
-	int rows()const { return n_rows; };   // Возвращает число строк
-	int cols()const { return n_cols; };    // Возвращает число строк
-	CMatrix Transp();				    // Возвращает матрицу,транспонированную к текущей
-	CMatrix GetRow(int);			    // Возвращает строку по номеру
+	double& operator()(int, int);        // Р’С‹Р±РѕСЂ СЌР»РµРјРµРЅС‚Р° РјР°С‚СЂРёС†С‹ РїРѕ РёРЅРґРµРєСЃСѓ 
+	double& operator()(int);            // Р’С‹Р±РѕСЂ СЌР»РµРјРµРЅС‚Р° РІРµРєС‚РѕСЂР° РїРѕ РёРЅРґРµРєСЃСѓ 
+	CMatrix operator-();			    // РћРїРµСЂР°С‚РѕСЂ "-"
+	CMatrix operator=(const CMatrix&);	// РћРїРµСЂР°С‚РѕСЂ "РџСЂРёСЃРІРѕРёС‚СЊ":    M1=M2
+	CMatrix operator*(CMatrix&);        // РћРїРµСЂР°С‚РѕСЂ "РџСЂРѕРёР·РІРµРґРµРЅРёРµ": Рњ1*Рњ2
+	CMatrix operator+(CMatrix&);	    // РћРїРµСЂР°С‚РѕСЂ "+": M1+M2
+	CMatrix operator-(CMatrix&);	    // РћРїРµСЂР°С‚РѕСЂ "-": M1-M2
+	CMatrix operator+(double);		    // РћРїРµСЂР°С‚РѕСЂ "+": M+a
+	CMatrix operator-(double);		    // РћРїРµСЂР°С‚РѕСЂ "-": M-a
+	int rows()const { return n_rows; };   // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‡РёСЃР»Рѕ СЃС‚СЂРѕРє
+	int cols()const { return n_cols; };    // Р’РѕР·РІСЂР°С‰Р°РµС‚ С‡РёСЃР»Рѕ СЃС‚СЂРѕРє
+	CMatrix Transp();				    // Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°С‚СЂРёС†Сѓ,С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРЅСѓСЋ Рє С‚РµРєСѓС‰РµР№
+	CMatrix GetRow(int);			    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚СЂРѕРєСѓ РїРѕ РЅРѕРјРµСЂСѓ
 	CMatrix GetRow(int, int, int);
-	CMatrix GetCol(int);			    // Возвращает столбец по номеру
+	CMatrix GetCol(int);			    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚РѕР»Р±РµС† РїРѕ РЅРѕРјРµСЂСѓ
 	CMatrix GetCol(int, int, int);
-	CMatrix RedimMatrix(int, int);	    // Изменяет размер матрицы с уничтожением данных
-	CMatrix RedimData(int, int);         // Изменяет размер матрицы с сохранением данных, 
-										 //которые можно сохранить
-	CMatrix RedimMatrix(int);	        // Изменяет размер матрицы с уничтожением данных
-	CMatrix RedimData(int);             // Изменяет размер матрицы с сохранением данных,
-										//которые можно сохранить
-	double MaxElement();			  	// Максимальный элемент матрицы
-	double MinElement();				// Минимальный элемент 
+	CMatrix RedimMatrix(int, int);	    // РР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ СЃ СѓРЅРёС‡С‚РѕР¶РµРЅРёРµРј РґР°РЅРЅС‹С…
+	CMatrix RedimData(int, int);         // РР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РґР°РЅРЅС‹С…, 
+										 //РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃРѕС…СЂР°РЅРёС‚СЊ
+	CMatrix RedimMatrix(int);	        // РР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ СЃ СѓРЅРёС‡С‚РѕР¶РµРЅРёРµРј РґР°РЅРЅС‹С…
+	CMatrix RedimData(int);             // РР·РјРµРЅСЏРµС‚ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РґР°РЅРЅС‹С…,
+										//РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃРѕС…СЂР°РЅРёС‚СЊ
+	double MaxElement();			  	// РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°С‚СЂРёС†С‹
+	double MinElement();				// РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ 
 };
 #endif

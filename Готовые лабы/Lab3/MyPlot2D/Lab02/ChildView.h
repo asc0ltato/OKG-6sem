@@ -1,43 +1,43 @@
 
-// ChildView.h: интерфейс класса CChildView
+// ChildView.h: РёРЅС‚РµСЂС„РµР№СЃ РєР»Р°СЃСЃР° CChildView
 //
 
 
 #pragma once
 
 
-// Окно CChildView
+// РћРєРЅРѕ CChildView
 
 class CChildView : public CWnd
 {
-	// Создание
+	// РЎРѕР·РґР°РЅРёРµ
 public:
 	CChildView();
 
-	// Атрибуты
+	// РђС‚СЂРёР±СѓС‚С‹
 public:
 	int Index;
 	int N_Bezier;
 	CMatrix X, Y;
-	CRect RW;	// Прямоугольник в окне
-	CRectD RS;	// Прямоугольник области в МСК
-	CPlot2D Graph;	// график
-	CMyPen PenLine, // Перо для линий
-		PenAxis;	// Перо для осей
+	CRect RW;	// РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РІ РѕРєРЅРµ
+	CRectD RS;	// РџСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РѕР±Р»Р°СЃС‚Рё РІ РњРЎРљ
+	CPlot2D Graph;	// РіСЂР°С„РёРє
+	CMyPen PenLine, // РџРµСЂРѕ РґР»СЏ Р»РёРЅРёР№
+		PenAxis;	// РџРµСЂРѕ РґР»СЏ РѕСЃРµР№
 
-// Операции
+// РћРїРµСЂР°С†РёРё
 public:
 	double MyF1(double x);
 	double MyF2(double x);
-	// Переопределение
+	// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ
 protected:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-	// Реализация
+	// Р РµР°Р»РёР·Р°С†РёСЏ
 public:
 	virtual ~CChildView();
 
-	// Созданные функции схемы сообщений
+	// РЎРѕР·РґР°РЅРЅС‹Рµ С„СѓРЅРєС†РёРё СЃС…РµРјС‹ СЃРѕРѕР±С‰РµРЅРёР№
 protected:
 	afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP()

@@ -21,28 +21,28 @@ void CRectD::SetRectD(double l, double t, double r, double b)
 CSizeD CRectD::SizeD()
 {
 	CSizeD cz;
-	cz.cx = fabs(right - left);	// Ширина прямоугольной области
-	cz.cy = fabs(top - bottom);	// Высота прямоугольной области
+	cz.cx = fabs(right - left);	// РЁРёСЂРёРЅР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРѕР№ РѕР±Р»Р°СЃС‚Рё
+	cz.cy = fabs(top - bottom);	// Р’С‹СЃРѕС‚Р° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРѕР№ РѕР±Р»Р°СЃС‚Рё
 	return cz;
 }
 
 
 CMatrix SpaceToWindow(CRectD& RS, CRect& RW)
-// Возвращает матрицу пересчета координат из мировых в оконные
-// RS - область в мировых координатах - double
-// RW - область в оконных координатах - int
+// Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°С‚СЂРёС†Сѓ РїРµСЂРµСЃС‡РµС‚Р° РєРѕРѕСЂРґРёРЅР°С‚ РёР· РјРёСЂРѕРІС‹С… РІ РѕРєРѕРЅРЅС‹Рµ
+// RS - РѕР±Р»Р°СЃС‚СЊ РІ РјРёСЂРѕРІС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… - double
+// RW - РѕР±Р»Р°СЃС‚СЊ РІ РѕРєРѕРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… - int
 {
 	CMatrix M(3, 3);
-	CSize sz = RW.Size();	 // Размер области в окне
+	CSize sz = RW.Size();	 // Р Р°Р·РјРµСЂ РѕР±Р»Р°СЃС‚Рё РІ РѕРєРЅРµ
 	int dwx = sz.cx;	     
 	int dwy = sz.cy;	     
-	CSizeD szd = RS.SizeD(); // Размер области в МСК
+	CSizeD szd = RS.SizeD(); // Р Р°Р·РјРµСЂ РѕР±Р»Р°СЃС‚Рё РІ РњРЎРљ
 
-	double dsx = szd.cx;    // Ширина в мск
-	double dsy = szd.cy;    // Высота в мск
+	double dsx = szd.cx;    // РЁРёСЂРёРЅР° РІ РјСЃРє
+	double dsy = szd.cy;    // Р’С‹СЃРѕС‚Р° РІ РјСЃРє
 
-	double kx = (double)dwx / dsx;   // Масштаб по x
-	double ky = (double)dwy / dsy;   // Масштаб по y
+	double kx = (double)dwx / dsx;   // РњР°СЃС€С‚Р°Р± РїРѕ x
+	double ky = (double)dwy / dsy;   // РњР°СЃС€С‚Р°Р± РїРѕ y
 
 	M(0, 0) = kx;  M(0, 1) = 0;    M(0, 2) = (double)RW.left - kx * RS.left;
 	M(1, 0) = 0;   M(1, 1) = -ky;  M(1, 2) = (double)RW.bottom + ky * RS.bottom;
@@ -52,10 +52,10 @@ CMatrix SpaceToWindow(CRectD& RS, CRect& RW)
 
 
 void SetMyMode(CDC& dc, CRectD& RS, CRect& RW)  //MFC
-												// Устанавливает режим отображения MM_ANISOTROPIC и его параметры
-												// dc - ссылка на класс CDC MFC
-												// RS -  область в мировых координатах - int
-												// RW -	 Область в оконных координатах - int  
+												// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЂРµР¶РёРј РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ MM_ANISOTROPIC Рё РµРіРѕ РїР°СЂР°РјРµС‚СЂС‹
+												// dc - СЃСЃС‹Р»РєР° РЅР° РєР»Р°СЃСЃ CDC MFC
+												// RS -  РѕР±Р»Р°СЃС‚СЊ РІ РјРёСЂРѕРІС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… - int
+												// RW -	 РћР±Р»Р°СЃС‚СЊ РІ РѕРєРѕРЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… - int  
 {
 	double dsx = RS.right - RS.left;
 	double dsy = RS.top - RS.bottom;
@@ -75,10 +75,10 @@ void SetMyMode(CDC& dc, CRectD& RS, CRect& RW)  //MFC
 	dc.SetMapMode(MM_ANISOTROPIC);
 }
 
-void CPlot2D::SetParams(CMatrix& XX, CMatrix& YY, CRect& RWX)		// Установка параметров графика-
-// XX - вектор данных по X 
-// YY - вектор данных по Y 
-// RWX - область в окне 
+void CPlot2D::SetParams(CMatrix& XX, CMatrix& YY, CRect& RWX)		// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РіСЂР°С„РёРєР°-
+// XX - РІРµРєС‚РѕСЂ РґР°РЅРЅС‹С… РїРѕ X 
+// YY - РІРµРєС‚РѕСЂ РґР°РЅРЅС‹С… РїРѕ Y 
+// RWX - РѕР±Р»Р°СЃС‚СЊ РІ РѕРєРЅРµ 
 {
 	int nRowsX = XX.rows();
 	int nRowsY = YY.rows();
@@ -91,25 +91,25 @@ void CPlot2D::SetParams(CMatrix& XX, CMatrix& YY, CRect& RWX)		// Установка пара
 	double x_min = X.MinElement();
 	double y_max = Y.MaxElement();
 	double y_min = Y.MinElement();
-	RS.SetRectD(x_min, y_max, x_max, y_min);		// Область в мировой СК
-	RW.SetRect(RWX.left, RWX.top, RWX.right, RWX.bottom);	// Область в окне
-	K = SpaceToWindow(RS, RW);			// Матрица пересчета координат
+	RS.SetRectD(x_min, y_max, x_max, y_min);		// РћР±Р»Р°СЃС‚СЊ РІ РјРёСЂРѕРІРѕР№ РЎРљ
+	RW.SetRect(RWX.left, RWX.top, RWX.right, RWX.bottom);	// РћР±Р»Р°СЃС‚СЊ РІ РѕРєРЅРµ
+	K = SpaceToWindow(RS, RW);			// РњР°С‚СЂРёС†Р° РїРµСЂРµСЃС‡РµС‚Р° РєРѕРѕСЂРґРёРЅР°С‚
 }
 
 
-void CPlot2D::SetWindowRect(CRect& RWX)		//Установка области в окне для отображения графика
+void CPlot2D::SetWindowRect(CRect& RWX)		//РЈСЃС‚Р°РЅРѕРІРєР° РѕР±Р»Р°СЃС‚Рё РІ РѕРєРЅРµ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РіСЂР°С„РёРєР°
 {
-	RW.SetRect(RWX.left, RWX.top, RWX.right, RWX.bottom);	// Область в окне
-	K = SpaceToWindow(RS, RW);			// Матрица пересчета координат
+	RW.SetRect(RWX.left, RWX.top, RWX.right, RWX.bottom);	// РћР±Р»Р°СЃС‚СЊ РІ РѕРєРЅРµ
+	K = SpaceToWindow(RS, RW);			// РњР°С‚СЂРёС†Р° РїРµСЂРµСЃС‡РµС‚Р° РєРѕРѕСЂРґРёРЅР°С‚
 }
 
 
-void CPlot2D::GetWindowCoords(double xs, double ys, int& xw, int& yw)		//Пересчет координаты точки из МСК в оконную СК
-// Пересчитывает координаты точки из МСК в оконную
-// xs - x- кордината точки в МСК
-// ys - y- кордината точки в МСК
-// xw - x- кордината точки в оконной СК
-// yw - y- кордината точки в оконной СК
+void CPlot2D::GetWindowCoords(double xs, double ys, int& xw, int& yw)		//РџРµСЂРµСЃС‡РµС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё РёР· РњРЎРљ РІ РѕРєРѕРЅРЅСѓСЋ РЎРљ
+// РџРµСЂРµСЃС‡РёС‚С‹РІР°РµС‚ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё РёР· РњРЎРљ РІ РѕРєРѕРЅРЅСѓСЋ
+// xs - x- РєРѕСЂРґРёРЅР°С‚Р° С‚РѕС‡РєРё РІ РњРЎРљ
+// ys - y- РєРѕСЂРґРёРЅР°С‚Р° С‚РѕС‡РєРё РІ РњРЎРљ
+// xw - x- РєРѕСЂРґРёРЅР°С‚Р° С‚РѕС‡РєРё РІ РѕРєРѕРЅРЅРѕР№ РЎРљ
+// yw - y- РєРѕСЂРґРёРЅР°С‚Р° С‚РѕС‡РєРё РІ РѕРєРѕРЅРЅРѕР№ РЎРљ
 
 {
 	CMatrix V(3), W(3);
@@ -122,8 +122,8 @@ void CPlot2D::GetWindowCoords(double xs, double ys, int& xw, int& yw)		//Пересче
 }
 
 
-void CPlot2D::SetPenLine(CMyPen& PLine)		// Перо для рисования графика
-// Установка параметров пера для линии графика
+void CPlot2D::SetPenLine(CMyPen& PLine)		// РџРµСЂРѕ РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ РіСЂР°С„РёРєР°
+// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РїРµСЂР° РґР»СЏ Р»РёРЅРёРё РіСЂР°С„РёРєР°
 {
 	PenLine.PenStyle = PLine.PenStyle;
 	PenLine.PenWidth = PLine.PenWidth;
@@ -131,8 +131,8 @@ void CPlot2D::SetPenLine(CMyPen& PLine)		// Перо для рисования графика
 }
 
 
-void CPlot2D::SetPenAxis(CMyPen& PAxis)		// Перо для осей координат
-// Установка параметров пера для линий осей 
+void CPlot2D::SetPenAxis(CMyPen& PAxis)		// РџРµСЂРѕ РґР»СЏ РѕСЃРµР№ РєРѕРѕСЂРґРёРЅР°С‚
+// РЈСЃС‚Р°РЅРѕРІРєР° РїР°СЂР°РјРµС‚СЂРѕРІ РїРµСЂР° РґР»СЏ Р»РёРЅРёР№ РѕСЃРµР№ 
 {
 	PenAxis.PenStyle = PAxis.PenStyle;
 	PenAxis.PenWidth = PAxis.PenWidth;
@@ -140,12 +140,12 @@ void CPlot2D::SetPenAxis(CMyPen& PAxis)		// Перо для осей координат
 }
 
 
-void CPlot2D::Draw(CDC& dc, int Ind1, int Ind2)		// Рисование с самостоятельным пересчетом координат
+void CPlot2D::Draw(CDC& dc, int Ind1, int Ind2)		// Р РёСЃРѕРІР°РЅРёРµ СЃ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅС‹Рј РїРµСЂРµСЃС‡РµС‚РѕРј РєРѕРѕСЂРґРёРЅР°С‚
 {
-	double xs, ys;			// в мск
-	int xw, yw;				// в оск
+	double xs, ys;			// РІ РјСЃРє
+	int xw, yw;				// РІ РѕСЃРє
 
-	if (Ind1 == 1) dc.Rectangle(RW);					// рамка
+	if (Ind1 == 1) dc.Rectangle(RW);					// СЂР°РјРєР°
 
 	if (Ind2 == 1)
 	{
@@ -154,71 +154,71 @@ void CPlot2D::Draw(CDC& dc, int Ind1, int Ind2)		// Рисование с самостоятельным 
 
 		if (RS.left * RS.right < 0)
 		{
-			xs =  0;  ys = RS.top;				// Точка (0,y_max) в МСК
-			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -точка (0,y_max) в ОСК		
-			dc.MoveTo(xw, yw);						// Перо в точку (0,y_max)
+			xs =  0;  ys = RS.top;				// РўРѕС‡РєР° (0,y_max) РІ РњРЎРљ
+			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -С‚РѕС‡РєР° (0,y_max) РІ РћРЎРљ		
+			dc.MoveTo(xw, yw);						// РџРµСЂРѕ РІ С‚РѕС‡РєСѓ (0,y_max)
 
-			xs = 0;  ys = RS.bottom;			// Точка (0,y_min) в МСК
-			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -точка (0,y_min) в ОСК
-			dc.LineTo(xw, yw);						// Линия (0,y_max) - (0,y_min) - Ось Y
+			xs = 0;  ys = RS.bottom;			// РўРѕС‡РєР° (0,y_min) РІ РњРЎРљ
+			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -С‚РѕС‡РєР° (0,y_min) РІ РћРЎРљ
+			dc.LineTo(xw, yw);						// Р›РёРЅРёСЏ (0,y_max) - (0,y_min) - РћСЃСЊ Y
 		}
 		
 		if (RS.top * RS.bottom < 0)
 		{
-			xs = RS.left;  ys = 0;				// (xs,ys) - точка (x_min,0) в МСК
-			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -точка (x_min,0) в ОСК
-			dc.MoveTo(xw, yw);						// Перо в точку (x_min,0)
+			xs = RS.left;  ys = 0;				// (xs,ys) - С‚РѕС‡РєР° (x_min,0) РІ РњРЎРљ
+			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -С‚РѕС‡РєР° (x_min,0) РІ РћРЎРљ
+			dc.MoveTo(xw, yw);						// РџРµСЂРѕ РІ С‚РѕС‡РєСѓ (x_min,0)
 
-			xs = RS.right;  ys = 0;			// (xs,ys) - точка (x_max,0) в МСК
-			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -точка (x_max,0) в ОСК
-			dc.LineTo(xw, yw);						// Линия (x_min,0) - (x_max,0) - Ось X
+			xs = RS.right;  ys = 0;			// (xs,ys) - С‚РѕС‡РєР° (x_max,0) РІ РњРЎРљ
+			GetWindowCoords(xs, ys, xw, yw);		// (xw,yw) -С‚РѕС‡РєР° (x_max,0) РІ РћРЎРљ
+			dc.LineTo(xw, yw);						// Р›РёРЅРёСЏ (x_min,0) - (x_max,0) - РћСЃСЊ X
 		}
 		dc.SelectObject(pOldPen);
 	}
 
 	xs = X(0); ys = Y(0);
-	GetWindowCoords(xs, ys, xw, yw);			// координаты начальной точки графика в ОСК
+	GetWindowCoords(xs, ys, xw, yw);			// РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР°С‡Р°Р»СЊРЅРѕР№ С‚РѕС‡РєРё РіСЂР°С„РёРєР° РІ РћРЎРљ
 
 	CPen MyPen(PenLine.PenStyle, PenLine.PenWidth, PenLine.PenColor);
 	CPen* pOldPen = dc.SelectObject(&MyPen);
-	dc.MoveTo(xw, yw);	// Перо в начальную точка для рисования графика
+	dc.MoveTo(xw, yw);	// РџРµСЂРѕ РІ РЅР°С‡Р°Р»СЊРЅСѓСЋ С‚РѕС‡РєР° РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ РіСЂР°С„РёРєР°
 	for (int i = 1; i < X.rows(); i++)
 	{
 		xs = X(i); ys = Y(i);
-		GetWindowCoords(xs, ys, xw, yw);			// координаты начальной точки графика с номером i в ОСК
+		GetWindowCoords(xs, ys, xw, yw);			// РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅР°С‡Р°Р»СЊРЅРѕР№ С‚РѕС‡РєРё РіСЂР°С„РёРєР° СЃ РЅРѕРјРµСЂРѕРј i РІ РћРЎРљ
 		dc.LineTo(xw, yw);
 	}
 	dc.SelectObject(pOldPen);
 }
 
 
-void CPlot2D::Draw1(CDC& dc, int Ind1, int Ind2)	// Рисование БЕЗ самостоятельного пересчетa координат
+void CPlot2D::Draw1(CDC& dc, int Ind1, int Ind2)	// Р РёСЃРѕРІР°РЅРёРµ Р‘Р•Р— СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕРіРѕ РїРµСЂРµСЃС‡РµС‚a РєРѕРѕСЂРґРёРЅР°С‚
 
 
-	// Рисует график в режиме MM_ANISOTROPIC - без собственного пересчета координат
-	// К моменту вызова функции режим и параметры режима должны быть установлены
-	// dc - ссылка на класс CDC MFC
-	// Ind1=1/0 - рисовать/не рисовать рамку
-	// Ind2=1/0 - рисовать/не рисовать оси координат
+	// Р РёСЃСѓРµС‚ РіСЂР°С„РёРє РІ СЂРµР¶РёРјРµ MM_ANISOTROPIC - Р±РµР· СЃРѕР±СЃС‚РІРµРЅРЅРѕРіРѕ РїРµСЂРµСЃС‡РµС‚Р° РєРѕРѕСЂРґРёРЅР°С‚
+	// Рљ РјРѕРјРµРЅС‚Сѓ РІС‹Р·РѕРІР° С„СѓРЅРєС†РёРё СЂРµР¶РёРј Рё РїР°СЂР°РјРµС‚СЂС‹ СЂРµР¶РёРјР° РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СѓСЃС‚Р°РЅРѕРІР»РµРЅС‹
+	// dc - СЃСЃС‹Р»РєР° РЅР° РєР»Р°СЃСЃ CDC MFC
+	// Ind1=1/0 - СЂРёСЃРѕРІР°С‚СЊ/РЅРµ СЂРёСЃРѕРІР°С‚СЊ СЂР°РјРєСѓ
+	// Ind2=1/0 - СЂРёСЃРѕРІР°С‚СЊ/РЅРµ СЂРёСЃРѕРІР°С‚СЊ РѕСЃРё РєРѕРѕСЂРґРёРЅР°С‚
 {
 
 	CRect IRS(RS.left, RS.top, RS.right, RS.bottom);
-	if (Ind1 == 1)dc.Rectangle(IRS);           // Рамка в окне
-	if (Ind2 == 1)                     // Если нужны оси...
+	if (Ind1 == 1)dc.Rectangle(IRS);           // Р Р°РјРєР° РІ РѕРєРЅРµ
+	if (Ind2 == 1)                     // Р•СЃР»Рё РЅСѓР¶РЅС‹ РѕСЃРё...
 	{//***
 		CPen MyPen(PenAxis.PenStyle, PenAxis.PenWidth, PenAxis.PenColor);
 		CPen* pOldPen = dc.SelectObject(&MyPen);
 
-		if (RS.left * RS.right < 0)          // Нужна Ось Y
+		if (RS.left * RS.right < 0)          // РќСѓР¶РЅР° РћСЃСЊ Y
 		{
-			dc.MoveTo(0, (int)RS.top);    // Перо в точку (0,Ymax)
-			dc.LineTo(0, (int)RS.bottom);  // Линия (0,Ymax) - (0,Ymin) - Ось Y
+			dc.MoveTo(0, (int)RS.top);    // РџРµСЂРѕ РІ С‚РѕС‡РєСѓ (0,Ymax)
+			dc.LineTo(0, (int)RS.bottom);  // Р›РёРЅРёСЏ (0,Ymax) - (0,Ymin) - РћСЃСЊ Y
 		}
 
-		if (RS.top * RS.bottom < 0)          // Нужна Ось X
+		if (RS.top * RS.bottom < 0)          // РќСѓР¶РЅР° РћСЃСЊ X
 		{
-			dc.MoveTo((int)RS.left, 0);        // Перо в точку (0,Xmin)
-			dc.LineTo((int)RS.right, 0);        //  Линия (0,Xmin) - (0,Xmax) - Ось X
+			dc.MoveTo((int)RS.left, 0);        // РџРµСЂРѕ РІ С‚РѕС‡РєСѓ (0,Xmin)
+			dc.LineTo((int)RS.right, 0);        //  Р›РёРЅРёСЏ (0,Xmin) - (0,Xmax) - РћСЃСЊ X
 		}
 		dc.SelectObject(pOldPen);
 	}//***
@@ -231,8 +231,8 @@ void CPlot2D::Draw1(CDC& dc, int Ind1, int Ind2)	// Рисование БЕЗ самостоятельно
 }
 
 
-void CPlot2D::GetRS(CRectD& RS)		// Возвращает область графика в мировой СК
-// RS - структура, куда записываются параметры области графика
+void CPlot2D::GetRS(CRectD& RS)		// Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±Р»Р°СЃС‚СЊ РіСЂР°С„РёРєР° РІ РјРёСЂРѕРІРѕР№ РЎРљ
+// RS - СЃС‚СЂСѓРєС‚СѓСЂР°, РєСѓРґР° Р·Р°РїРёСЃС‹РІР°СЋС‚СЃСЏ РїР°СЂР°РјРµС‚СЂС‹ РѕР±Р»Р°СЃС‚Рё РіСЂР°С„РёРєР°
 {
 	RS.left = (this->RS).left;
 	RS.top = (this->RS).top;
